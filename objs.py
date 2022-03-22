@@ -32,12 +32,22 @@ class Canvas:
         self.height = height
         self.color = color
     
-    def generate(self):
+    def generate(self, rects, sqrs):
         data = np.zeros((self.width, self.height, 3), dtype=np.uint8)
-        
+
         if self.color == 'white':
             data[:] = [255, 255, 255]
 
+        # Add rectangles on the image if the list isn't empty
+        if len(rects) > 0:
+            for rect in rects:
+                data[rect.x : rect.x + rect.width, rect.y : rect.y + rect.height] = [rect.red, rect.green, rect.blue]
+
+        # Add squares on the image if the list isn't empty
+        if len(sqrs) > 0:
+            for sqr in sqrs:
+                data[sqr.x : sqr.x + sqr.side, sqr.x : sqr.y + sqr.side] = [sqr.red, sqr.green, sqr.blue]
+        
         img = Image.fromarray(data, 'RGB')
         name = 'canvas.png'
         img.save(name)

@@ -14,6 +14,10 @@ canvas = Canvas(width, height, canvas_color)
 
 print('Great! Now let\'s create some objects on it!')
 
+# Make empty lists which will contain rectangles and squares
+rects = list()
+sqrs = list()
+
 while True:
     print('Type \'rectangle\' to add a rectangle and \'square\' to add a square (or smth else to quit).')
     figure = input('> ')
@@ -30,7 +34,8 @@ while True:
         green = input('Enter Green value 0-255: ')
         blue = input('Enter Blue value 0-255: ')
         square = Square(x, y, side, red, green, blue)
-        # Here should be a line which adds a newly created square to the canvas
+        # Add newly created square to the square list
+        sqrs.append(square)
         continue
     
     if figure == 'rectangle':
@@ -42,8 +47,9 @@ while True:
         green = input('Enter Green value 0-255: ')
         blue = input('Enter Blue value 0-255: ')
         rect = Rectangle(x, y, width, height, red, green, blue)
-        # Here should be a line which adds a newly created rectangle to the canvas
+        # Add newly created rectangle to the rectangle list
+        rects.append(rect)
         continue
 
 # Generate a png file from Canvas instance
-canvas.generate()
+canvas.generate(rects, sqrs)
