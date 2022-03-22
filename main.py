@@ -46,3 +46,4 @@ while True:
         continue
 
 # Generate a png file from Canvas instance
+canvas.generate()

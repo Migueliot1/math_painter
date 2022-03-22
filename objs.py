@@ -31,3 +31,14 @@ class Canvas:
         self.width = width
         self.height = height
         self.color = color
+    
+    def generate(self):
+        data = np.zeros((self.width, self.height, 3), dtype=np.uint8)
+        
+        if self.color == 'white':
+            data[:] = [255, 255, 255]
+
+        img = Image.fromarray(data, 'RGB')
+        name = 'canvas.png'
+        img.save(name)
+        print(f'{name} was succesfully generated.')
